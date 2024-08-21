@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphical Password authentication</title>
+    
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-inverse" style="border-radius: 0px; padding: 0px 30px; margin: 0px;">
+            <a class="navbar-brand" href="#">Graphical Password authentication</a>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="homesignup">signup</a>
+                </li>
+                <li>
+                    <a href="homesignin">signin</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section id="main" style="background-image: url(/static/home/img/background.jpg); height:94vh; background-size: cover;">
+        <center style="padding-top:20%; color: aliceblue;" class="container">
+            <h1 >Forgot Password</h1>
+            
+            <form action="" method="POST" role="form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            
+        </center>
+    </section>
+</body>
+</html>

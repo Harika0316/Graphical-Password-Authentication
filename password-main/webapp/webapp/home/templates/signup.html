@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphical Password authentication</title>
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-inverse" style="border-radius: 0px; padding: 0px 30px; margin: 0px;">
+            <a class="navbar-brand" href="#">Graphical Password authentication</a>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active">
+                    <a href="homesignup">signup</a>
+                </li>
+                <li>
+                    <a href="homesignin">signin</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section id="main"
+        style="background-image: url(/static/home/img/background.jpg); height:94vh; background-size: cover;">
+        <center class="container" style=" color: aliceblue;">
+            <form action="" method="POST" role="form">
+                {% csrf_token %}
+                <legend>Sign Up</legend>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                </div>
+
+                <div id="grid">
+                    {% for x in data %}
+                        <div class="row">
+                        {% for j in x %}
+                            <div class="col-md-2"><input type="checkbox" class="img" onclick="xy('{{j}}')" value="{{j}}"><img src="/static/home/img/images/{{j}}" width="100px" height="100px"></div>
+                        {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <input type="text" name="img1" id="img1" hidden>
+                <input type="text" name="img2" id="img2" hidden>
+                <input type="text" name="img3" id="img3" hidden>
+                <input type="text" name="img4" id="img4" hidden>
+                <input type="text" name="img5" id="img5" hidden>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+            {% if res %}                
+                <div class="alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{res}}</strong> 
+                </div>
+            {% endif %}
+
+            <script>
+                var count = 0;
+                var arr = [];
+                function xy(x){
+                    arr[count] = x;
+                    count++;
+                    if(count==5){
+                        console.log(arr);
+                        $('.img').prop('disabled', true);
+                        $('#img1').val(arr[0]);
+                        $('#img2').val(arr[1]);
+                        $('#img3').val(arr[2]);
+                        $('#img4').val(arr[3]);
+                        $('#img5').val(arr[4]);
+                    }
+                }
+            </script>
+        </center>
+    </section>
+</body>
+
+</html>
